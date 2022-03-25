@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleafe.org">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<style type="text/css">
+table {
+	border: 5px solid black;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.page-footer {
+	background: rgb(61, 157, 179);
+}
+
+.nav-wrapper {
+	background: rgb(61, 157, 179);
+}
+
+th {
+	padding: 20px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: blue;
+}
+
+h1 {
+	font-family: verdana;
+	text-align: center;
+}
+
+table {
+	padding: 10px;
+	margin-top: 80px;
+}
+
+.brand-logo {
+	padding: 12px;
+}
+
+.brand-logo:hover {
+	color: white;
+}
+</style>
+<title>Lista De Administradores</title>
+</head>
+<body>
+
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Lista De Administradores</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="#">LINK1</a></li>
+				<li><a href="#">LINK2</a></li>
+				<li><a href="#">LINK3</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<table>
+
+		<tr>
+
+			<th>Id</th>
+			<th>Nome</th>
+			<th>Email</th>
+			<th>Alterar</th>
+			<th>Excluir</th>
+
+
+		</tr>
+
+		<tbody>
+
+			<tr th:each="adm:${admin}">
+				<td th:text="${adm.id}"></td>
+				<td th:text="${adm.nome}"></td>
+				<td th:text="${adm.email}"></td>
+				<td><a th:href="@{/alterarAdmin(id=${adm.id})}">Alterar</a></td>
+				<td><a th:href="@{/excluirAdmin(id=${adm.id})}">Excluir</a></td>
+
+			</tr>
+
+		</tbody>
+
+	</table>
+
+	<ul class="pagination">
+		<!-- verifica se a pagina atual é igual ao total de paginas disabilita a seta para esquerda -->
+		<li th:class="${pgAtual == 1 ? 'disabled' : ''}"><a
+			th:href="${pgAtual > 1 ? pgAtual - 1 : '#'}"> <i
+				class="material-icons">chevron_left</i></a></li>
+		<!-- da o efeito na pagina atual -->
+		<li th:each="paginas:${numPg}"
+			th:class="${pgAtual == paginas ? 'active blue': ''}"><a
+			th:href="${paginas}"> <span th:text="${paginas}"></span></a></li>
+		<!-- verifica se a pagina atual é igual ao total de paginas disabilita a seta para direita -->
+		<li th:class="${pgAtual == numTotalPg ? 'disabled' : ''}"><a
+			th:href="${pgAtual < numTotalPg ? pgAtual+1: '' }"><i
+				class="material-icons">chevron_right</i></a></li>
+	</ul>
+
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">GUIDE CAR`S</h5>
+					<p class="grey-text text-lighten-4">Volte Sempre!!!</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="#">Cadastre-Se</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">© 2022 Copyright Text</div>
+		</div>
+	</footer>
+
+</body>
+</html>
