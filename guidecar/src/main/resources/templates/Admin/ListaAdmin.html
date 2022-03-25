@@ -8,10 +8,15 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <style type="text/css">
 table {
-	border: 5px solid black;
+	
+	border: 5px solid #00afb9;
 	margin: 0 auto;
 	width: 80%;
 }
+
+i{
+
+color: rgb(61, 157, 179);;}
 
 .page-footer {
 	background: rgb(61, 157, 179);
@@ -85,8 +90,8 @@ table {
 				<td th:text="${adm.id}"></td>
 				<td th:text="${adm.nome}"></td>
 				<td th:text="${adm.email}"></td>
-				<td><a th:href="@{/alterarAdmin(id=${adm.id})}">Alterar</a></td>
-				<td><a th:href="@{/excluirAdmin(id=${adm.id})}">Excluir</a></td>
+				<td><a th:href="@{/alterarAdmin(id=${adm.id})}"><i class="material-icons">create</i></a></td>
+				<td><a th:href="@{/excluirAdmin(id=${adm.id})}"><i class="material-icons">delete</i></a></td>
 
 			</tr>
 
