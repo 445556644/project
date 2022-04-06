@@ -233,3 +233,12 @@
     color: #bebcbc;
     font-style: italic;
   }
+  
+  .page-footer {
+	background: rgb(61, 157, 179);
+}
+
+.nav-wrapper {
+	background: rgb(61, 157, 179);
+}
+  

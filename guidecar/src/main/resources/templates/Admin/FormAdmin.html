@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link rel="shortcut icon" type="imagex/png" href="carro.png">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="../css/estiloForm.css">
+ 
   
   <style type="text/css">
   /*fadeInLeft*/
@@ -107,6 +111,11 @@
    
     -webkit-border-radius: 0 0  5px 5px;
     border-radius: 0 0  5px 5px;
+  }
+  
+  .container{
+  
+  margin-bottom: 170px;
   }
    
   .link a {
@@ -244,11 +253,29 @@
     font-style: italic;
   }
   
+  .page-footer {
+	background: rgb(61, 157, 179);
+	height: 100%;
+	position: relative;
+	margin-top:150px;
+}
+
+.nav-wrapper {
+	background: rgb(61, 157, 179);
+}
+
+.container{
+
+margin-top: 50px;
+}
+  
   </style>
 
 <title>Cadastro De Administradores</title>
 </head>
 <body>
+
+<nav th:replace ="fragments/padrao :: navBar"></nav>
 
 
 <div class="container" >
@@ -261,8 +288,8 @@
         <form method="post" action=""> 
           <h1>Login</h1> 
           <p> 
-            <label for="nome_login">Seu nome</label>
-            <input  id="nome_login" name="nome" required="required" type="text" placeholder="ex. joao"/>
+            <label for="nome">Seu nome</label>
+            <input  id="nome" name="nome" required="required" type="text" placeholder="ex. joao"/>
           </p>
            
           <p> 
@@ -295,8 +322,8 @@
           <h1>Cadastro De Administradores</h1> 
            
           <p> 
-            <label for="nome_cad">Seu nome</label>
-            <input th:value="${admin?.nome}" id="nome_cad" name="nome" required="required" type="text" placeholder="nome" />
+            <label for="nome">Seu nome</label>
+            <input th:value="${admin?.nome}" id="nome" name="nome" required="required" type="text" placeholder="nome" />
           </p>
            
           <p> 
@@ -321,6 +348,8 @@
       </div>
     </div>
   </div>  
+  
+  <footer th:replace ="fragments/padrao :: rodape"></footer>
  
 		
 

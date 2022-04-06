@@ -1,25 +1,21 @@
 package br.senai.sp.cfp8.guidecar.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.senai.sp.cfp8.guidecar.model.Administrador;
-import br.senai.sp.cfp8.guidecar.model.RepositoryAdmin;
+import br.senai.sp.cfp8.guidecar.repository.RepositoryAdmin;
+import br.senai.sp.cfp8.guidecar.util.HashUtil;
 
 @Controller
 public class AdminController {
@@ -30,7 +26,6 @@ public class AdminController {
 	@RequestMapping("formAdmin")
 	public String formAdmin() {
 
-		
 		return "Admin/FormAdmin";
 	}
 
@@ -49,17 +44,46 @@ public class AdminController {
 			redAtt.addFlashAttribute("admin", adm);
 			return "redirect:listarAdmin";
 		}
+		
+		boolean alteracao = adm.getId() != null ? true : false;
+
+		// verifica se a senha é igual a hash null
+		if (adm.getSenha().equals(HashUtil.hash256(""))) {
+
+			if (!alteracao) {
+				
+				// pega a "senha" que sera da primeira ate a ultima letra do email .
+				// substring pega o inicio.
+				// indexof pega ate onde que da string, na senha vai ate 0 @.
+				String parte = adm.getEmail().substring(0, adm.getEmail().indexOf("@"));
+				
+				// seta a primeira parte do email que sera a nova senha.
+				adm.setSenha(parte);
+			}else {
+				
+				// busca a senha atual pelo id do adm
+				String senha = repAdm.findById(adm.getId()).get().getSenha();
+				
+				// seta a senha com hash
+				adm.setSenhaComHash(senha);
+			}
+		}
 
 		try {
 			repAdm.save(adm);
-			redAtt.addFlashAttribute("msgSucesso", "Cadastro Realizado Com Sucesso," + " Adm De Id: " + adm.getId());
+			redAtt.addFlashAttribute("msgSucesso", "Cadastro Salvo Com Sucesso, Caso a senha nao seja informada, sera a parte do e-mail antes do @" + " Adm De Id: " + adm.getId());
 			return "redirect:listarAdmin/1";
+			
+			
 		} catch (Exception e) {
 
 			// caso ocorra um erro informa ao usuario de forma melhor
 			redAtt.addFlashAttribute("EmailRepetido", "Houve Um Erro Ao Cadastrar O administrador" + e.getMessage());
 		}
 		return "redirect:formAdmin";
+
+		// verifica se nao é uma alteração pelo id, pois toda a alteracao possui um id
+	
 
 	}
 
@@ -70,7 +94,7 @@ public class AdminController {
 
 		// cria uma pagina que começa na 0, que possuem 6 elementos por paginas e ordena
 		// pelo nome
-		PageRequest pageble = PageRequest.of(page - 1, 6, Sort.by(Sort.Direction.ASC, "nome"));
+		PageRequest pageble = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.ASC, "nome"));
 
 		// cria a pagina atual atraves do repository
 
