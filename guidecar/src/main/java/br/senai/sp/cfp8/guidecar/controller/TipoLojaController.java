@@ -37,7 +37,7 @@ public class TipoLojaController {
 	}
 
 	// metodo que faz a listagem
-	@RequestMapping("listarLojas/{pagina}")
+	@RequestMapping("listarTiposLojas/{pagina}")
 	public String listaTipos(Model model, @PathVariable("pagina") int page) {
 
 		model.addAttribute("tipoLoja", tipoLojaRepository.findAll());
@@ -86,7 +86,7 @@ public class TipoLojaController {
 
 		model.addAttribute("loja", tipoLojaRepository.findById(id).get());
 
-		return "forward:formCar";
+		return "forward:formTipos";
 	}
 
 	// metodo que deleta

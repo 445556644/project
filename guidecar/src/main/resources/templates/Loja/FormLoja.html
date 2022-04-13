@@ -1,9 +1,15 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleafe.org">
-
+<meta charset="UTF-8">
+<title>Point Story</title>
 <head>
-<link rel="shortcut icon" type="imagex/png" href="carro.png">
+<title>Login V13</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="shortcut icon" type="imagex/png" href="loja-de-fachada.png">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -17,212 +23,237 @@
 	});
 </script>
 
-<style type="text/css">
-.table-bordered {
-	border: 5px solid #0077b6;
-	margin: 0 auto;
-	width: 80%;
-}
-
-.bloco {
-	margin: 0 auto;
-	width: 80%;
-}
-
-.linkForm {
-	text-align: center;
-}
-
-i {
-	color: rgb(61, 157, 179);;
-}
-
-.page-footer {
-	background: rgb(61, 157, 179);
-}
-
-.nav-wrapper {
-	background: rgb(61, 157, 179);
-}
-
-th {
-	padding: 20px;
-}
-
-a {
-	color: black;
-}
-
-a:hover {
-	color: blue;
-}
-
-h1 {
-	font-family: verdana;
-	text-align: center;
-}
-
-table {
-	padding: 10px;
-	margin-top: 80px;
-}
-
-.brand-logo {
-	padding: 12px;
-}
-
-.linkForm {
-	text-transform: uppercase;
-	color: black;
-	margin-left: 750px;
-}
-
-.linkForm:hover {
-	color: rgb(61, 157, 179);
-}
-
-.table {
-	margin-top: 100px;
-}
-
-.material-icons {
-	color: black;
-}
-
-.material-icons:hover {
-	color: #0077b6;
-}
-</style>
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="util.css">
+<link rel="stylesheet" type="text/css" href="main.css">
+<!--===============================================================================================-->
 </head>
+<body style="background-color: #999999;">
 
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more"
+				style="background-image: url(imgloja.jpg);"></div>
 
-<meta charset="UTF-8">
-
-<title>Point Story</title>
-
-
-
-<div class="bloco">
-
-	<div class="row">
-		<form action="salvarLoja" class="col s6">
-			<div class="row">
-				<div class="input-field col s6">
-
-					<input id="nome" placeholder="Nome Loja" type="text" name="nome"
-						class="validate"> <select name="tipos.id">
-
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form action="salvarLoja" method="post" accept-charset="utf-8"
+					enctype="multipart/form-data" class="login100-form validate-form">
+					<input type="hidden" name="id" th:value="${loja?.id}">
+					<span class="login100-form-title p-b-59"> <i
+						class="small material-icons">account_balance</i> Story Point
+					</span> <label>Insira O Tipo de Loja</label> <select name="tipoLoja.id">
 						<option th:each="t: ${tipos}" th:text="${t.nome}"
-							th:value="${t.id}"></option>
-
-					</select> <label>Selecione O Tipo De Loja </label>
-
-				</div>
+							th:value="${t.id}" th:selected="${t.id == loja?.tipoLoja?.id}">
 
 
+						</option>
 
-				<div class="input-field col s6">
-					<input required="required" id="descricao" type="text"
-						name="descricao" class="validate"> <label for="descricao">Descrição</label>
-				</div>
+					</select>
+
+					<div class="wrap-input100 validate-input"
+						data-validate="Nome da Loja">
+						<span class="label-input100"><i
+							class="small material-icons">store_mall_directory</i></span> <input
+							th:value="${loja?.nome}" class="input100" type="text" name="nome"
+							placeholder="Nome Da Loja"> <span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100"><i
+							class=" small material-icons">error</i></span> <input
+							th:value="${loja?.descricao}" class="input100" type="text"
+							name="descricao" placeholder="Descreva Sua Loja"> <span
+							class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input"
+						data-validate="Insira O Cep">
+						<span class="label-input100"><i
+							class=" small material-icons">call</i></span> <input
+							th:value="${loja?.telefone}" class="input100" type="text"
+							name="telefone" placeholder="Telefone"> <span
+							class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input"
+						data-validate="Insira O Cep">
+						<span class="label-input100"><i
+							class=" small material-icons">location_on</i> </span> <input
+							class="input100" th:value="${loja?.cep}" type="text" id="cep"
+							name="cep" placeholder="Cep"><span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate>
+						<span class="label-input100"><i
+							class=" small material-icons">map</i></span> <input class="input100"
+							th:value="${loja?.endereco}" type="text" name="endereco"
+							placeholder="Endereco" readonly id="logradouro"> <span
+							class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate>
+						<span class="label-input100"><i
+							class=" small material-icons">location_city</i></span> <input
+							class="input100" th:value="${loja?.cidade}" type="text"
+							placeholder="Cidade" name="cidade" readonly id="localidade">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100"><i
+							class=" small material-icons">local_movies</i></span> <input
+							class="input100" th:value="${loja?.bairro}" type="text"
+							placeholder="Bairro" name="bairro" readonly id="bairro">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100"><i
+							class=" small material-icons">local_library</i></span> <input
+							class="input100" th:value="${loja?.estado}" type="text"
+							name="estado" placeholder="Estado" readonly id="uf"> <span
+							class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input"
+						data-validate=" Insira O Telefone">
+						<span class="label-input100"><i
+							class=" tiny material-icons">N°</i></span> <input placeholder="Número"
+							th:value="${loja?.numero}" class="input100" type="text"
+							name="numero"> <span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input"
+						data-validate=" Insira O Telefone">
+						<span class="label-input100"><i
+							class=" small material-icons">nature_people</i></span> <input
+							placeholder="Complemento" th:value="${loja?.complemento}"
+							class="input100" type="text" name="complemento"> <span
+							class="focus-input100"></span>
+					</div>
+
+
+
+					<div class="wrap-input100 validate-input" data-validate=" !!!">
+						<span class="label-input100"><i
+							class=" small material-icons">person</i></span> <input
+							th:value="${loja?.redesSociais}" class="input100" type="text"
+							placeholder="@" name="redesSociais"> <span
+							class="focus-input100"></span>
+					</div>
+
+
+
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100"></span> <input class="input100"
+							type="file" multiple="multiple" accept="Imagens/*" name="fotos">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<!-- div so existe caso tenha fotos -->
+					<div th:if="${loja?.foto?.length > 0}">
+					
+					
+					<h6>Fotos Cadastradas</h6>
+					
+					<div>
+					
+					<ul>
+					
+					<!-- traz a quantidade de fotos cadastradas -->
+					<li th:each="foto, i : ${loja.verFotos()}">
+					
+					<!-- mostra a foto pela  -->
+					<a th:href="${foto}" target="blank"> <img width="30%" th:src="${foto}"></a>
+					
+					<a th:href="@{/excluirFotoLoja(id=${loja.id},numFoto = ${i.index})}">
+					
+						<i class=" small material-icons">delete_forever</i>
+					
+					</a>
+					
+					</li>
+					
+					</ul>
+					
+					</div>
+					
+					
+					</div>
+
+
+
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">Cadastrar</button>
+						</div>
+
+
+					</div>
+
+
+
+
+				</form>
 			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Telefone" name="telefone" type="text"
-						class="validate">
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Cep" id="cep" type="text" name="cep"
-						class="validate">
-
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="logradouro" type="text" name="endereco" class="validate">
-					<label>Endereco</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Cidade" id="localidade" type="text"
-						name="cidade" class="validate">
-
-				</div>
-
-			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Bairro" id="bairro" name="bairro" type="text"
-						class="validate">
-
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Estado" id="uf" name="estado" type="text"
-						class="validate">
-
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Numero" name="numero" type="text"
-						class="validate">
-				</div>
-			</div>
-
-
-
-			<div class="row">
-				<div class="input-field col s12">
-					<input placeholder="Complemento" name="complemento" type="text"
-						class="validate">
-				</div>
-			</div>
-
-
-
-			<p>
-				<i class="small material-icons">motorcycle</i> <label> <input
-					class="with-gap" name="delivery" type="checkbox" /> <span></span>
-				</label>
-			</p>
-
-			<p>
-				<i class="small material-icons">local_parking</i> <label> <input
-					class="with-gap" name="redesSociais" type="checkbox" /> <span></span>
-				</label>
-			</p>
-
-			<p>
-				<i class="small material-icons">favorite_border</i> <label>
-					<input class="with-gap" name="estacionamento" type="checkbox" />
-					<span></span>
-				</label>
-			</p>
-
-
-
-			<div class="input-field col s12">
-
-				<div class="input-field col s12"></div>
-			</div>
-			<button class="btn waves-effect waves-light" type="submit"
-				name="action">
-				Enviar <i class="material-icons right">send</i>
-			</button>
-		</form>
+		</div>
 	</div>
-</div>
 
-<script type="text/javascript" src="busca.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script type="text/javascript" src="busca.js"></script>
+
+</body>
+</html>
+
+
 
 
 </body>

@@ -18,7 +18,7 @@ public class ConfiguracaoApp {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3307/guideCar");
+		dataSource.setUrl("jdbc:mysql://localhost:3307/pointStore");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 

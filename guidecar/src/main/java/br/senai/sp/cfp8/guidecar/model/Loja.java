@@ -25,13 +25,16 @@ public class Loja {
 	private String complemento;
 	private String estado;
 	private String cidade;
+	private String bairro;
 	private String foto;
 	private String redesSociais;
-	private boolean estacionamento;
-	private boolean delivery;
-	private String formasPagamento;
 	private String telefone;
 	@ManyToOne
 	private TipoLoja tipoLoja;
-	
+
+	public String[] verFotos() {
+
+		return this.foto.split(";");
+	}
+
 }

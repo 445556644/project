@@ -15,11 +15,9 @@ public class TipoLoja {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String descricao;
 	private String palavrasChave;
-	private String modelo;
 	private String ano;
-	private String acessorios;
+	private String complementos;
 	
 
 }

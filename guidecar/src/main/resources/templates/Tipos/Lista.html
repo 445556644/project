@@ -100,7 +100,7 @@ table {
 				<li class="nav-item active"><a class="nav-link" href="">Inicio
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="">Lista</a></li>
+				<li class="nav-item"><a class="nav-link" href="formAdmin">Lojas</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -115,7 +115,8 @@ table {
 			</ul>
 			<form action="/buscar" class="form-inline my-2 my-lg-0">
 				<input name="busca" required="required" class="form-control mr-sm-2"
-					type="search" placeholder="Busque Por Um Modelo" aria-label="Search">
+					type="search" placeholder="Busque Por Um Modelo"
+					aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0 bg-primary"
 					type="submit">Busque</button>
 			</form>
@@ -131,9 +132,7 @@ table {
 
 			<th scope="col">Id</th>
 			<th scope="col">Nome</th>
-			<th scope="col">Descrição</th>
 			<th scope="col">Palavra Chave</th>
-			<th scope="col">Modelo</th>
 			<th scope="col">Ano</th>
 			<th scope="col">Acessorios</th>
 			<th scope="col">Alterar</th>
@@ -147,11 +146,9 @@ table {
 			<tr th:each="loja:${tipoLoja}">
 				<td th:text="${loja.id}"></td>
 				<td th:text="${loja.nome}"></td>
-				<td th:text="${loja.descricao}"></td>
 				<td th:text="${loja.palavrasChave}"></td>
-				<td th:text="${loja.modelo}"></td>
 				<td th:text="${loja.ano}"></td>
-				<td th:text="${loja.acessorios}"></td>
+				<td th:text="${loja.complementos}"></td>
 				<td><a th:href="@{/alterarTipo(id=${loja.id})}"><i
 						class="material-icons">create</i></a></td>
 				<td><a th:href="@{/excluirTipo(id=${loja.id})}"><i
