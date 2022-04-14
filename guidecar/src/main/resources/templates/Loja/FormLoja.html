@@ -164,12 +164,21 @@
 					</div>
 
 
+						<input type="hidden" name="foto" th:value="${loja?.foto}">
 
 					<div class="wrap-input100 validate-input" data-validate=" !!!">
 						<span class="label-input100"><i
 							class=" small material-icons">person</i></span> <input
 							th:value="${loja?.redesSociais}" class="input100" type="text"
 							placeholder="@" name="redesSociais"> <span
+							class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate=" !!!">
+						<span class="label-input100"><i
+							class=" small material-icons">cloud</i></span> <input
+							th:value="${loja?.site}" class="input100" type="text"
+							placeholder="Ex: storypoint.com.br" name="site"> <span
 							class="focus-input100"></span>
 					</div>
 
